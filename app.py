@@ -109,15 +109,15 @@ def main():
             print(f"[{Fore.LIGHTGREEN_EX}{i}{Fore.RESET}] {torrent['name']} - {calc(torrent['size'])} | S: {torrent['seeders']} | L: {torrent['leechers']}")
             i += 1
         picked = int(getch_question("Hvilken film skal jeg begynde at hente?"))
-        print(movies['torrents'][picked-1])
-        print(f"\n[{Fore.LIGHTGREEN_EX}1{Fore.RESET}] Download .torrent fil")
+        clear()
+        print(f"[{Fore.LIGHTGREEN_EX}1{Fore.RESET}] Download .torrent fil")
         print(f"[{Fore.LIGHTGREEN_EX}2{Fore.RESET}] Åben magnet link")
         dl_as = int(getch_question("Hvordan skal jeg håndtere filmen?"))
         if dl_as == 1:
-            os.system(f"start https://danishbytes.club/torrent/download/{movies['torrents'][picked-1]['id']}.{movies['rss_key']}")
+            os.system(f"start https://danishbytes.club/torrent/download/{movies['torrents'][picked-1]['id']}.{movies['rsskey']}")
         elif dl_as == 2:
             torrent = d.get_torrent(movies['torrents'][picked-1]['id'])
-            magnet = f"magnet:?dn={movies['torrents'][picked-1]['name']}&xt=urn:btih:{movies['torrents'][picked-1]['info_hash']}&as=https://danishbytes.club/torrent/download/{movies['torrents'][picked-1]['id']}.{movies['rss_key']}&xl={movies['torrents'][picked-1]['size']}&tr=https://danishbytes.club/announce/e064ba0c35d252338572fd7720448cc5&tr=https://danishbytes.org/announce/e064ba0c35d252338572fd7720448cc5&tr=https://danishbytes2.org/announce/e064ba0c35d252338572fd7720448cc5&tr=https://danishbytes.art/announce/e064ba0c35d252338572fd7720448cc5"
+            magnet = f"magnet:?dn={movies['torrents'][picked-1]['name']}&xt=urn:btih:{movies['torrents'][picked-1]['info_hash']}&as=https://danishbytes.club/torrent/download/{movies['torrents'][picked-1]['id']}.{movies['rsskey']}&xl={movies['torrents'][picked-1]['size']}&tr=https://danishbytes.club/announce/e064ba0c35d252338572fd7720448cc5&tr=https://danishbytes.org/announce/e064ba0c35d252338572fd7720448cc5&tr=https://danishbytes2.org/announce/e064ba0c35d252338572fd7720448cc5&tr=https://danishbytes.art/announce/e064ba0c35d252338572fd7720448cc5"
             open_magnet(magnet)
             print("Burde være åbnet i din Bit klient nu.")
         return
